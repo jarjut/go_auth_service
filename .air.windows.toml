@@ -1,0 +1,75 @@
+# Config file for Air in TOML format - Windows specific
+# See https://github.com/cosmtrek/air
+
+# Working directory
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  # Array of commands to run before each build
+  pre_cmd = []
+  # Just plain old shell command.
+  cmd = "go build -o ./tmp/main.exe cmd/main.go"
+  # Binary file yields from `cmd`.
+  bin = "tmp/main.exe"
+  # Customize binary
+  full_bin = "tmp\\main.exe"
+  # Watch these filename extensions.
+  include_ext = ["go", "tpl", "tmpl", "html"]
+  # Ignore these filename extensions or directories.
+  exclude_dir = ["assets", "tmp", "vendor", "frontend", "node_modules", "bin"]
+  # Watch these directories if you specified.
+  include_dir = []
+  # Watch these files.
+  include_file = []
+  # Exclude files.
+  exclude_file = []
+  # Exclude specific regular expressions.
+  exclude_regex = ["_test\\.go"]
+  # Exclude unchanged files.
+  exclude_unchanged = true
+  # Follow symlink for directories
+  follow_symlink = true
+  # This log file places in your tmp_dir.
+  log = "air.log"
+  # Poll files for changes instead of using fsnotify (useful for Windows)
+  poll = true
+  # Poll interval
+  poll_interval = 500 # ms
+  # Delay before build
+  delay = 1000 # ms
+  # Stop running old binary when build errors occur.
+  stop_on_error = true
+  # Send Interrupt signal before killing process (windows does not support this feature)
+  send_interrupt = false
+  # Delay after sending Interrupt signal
+  kill_delay = 500 # ms
+  # Rerun binary or not
+  rerun = false
+  # Delay after each execution
+  rerun_delay = 500
+  # Add additional arguments when running binary
+  args_bin = []
+
+[log]
+  # Show log time
+  time = true
+  # Only show main log
+  main_only = false
+
+[color]
+  # Customize each part's color.
+  main = "magenta"
+  watcher = "cyan"
+  build = "yellow"
+  runner = "green"
+
+[misc]
+  # Delete tmp directory on exit
+  clean_on_exit = true
+
+[screen]
+  # Clear screen on build
+  clear_on_rebuild = true
+  # Keep scroll on rebuild
+  keep_scroll = true
