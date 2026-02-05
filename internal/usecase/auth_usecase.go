@@ -108,14 +108,8 @@ func (uc *authUseCase) RefreshToken(ctx context.Context, req RefreshTokenRequest
 		return nil, domain.ErrRefreshTokenExpired
 	}
 
-	// Validate JWT signature
-	claims, err := uc.jwtManager.ValidateToken(req.RefreshToken)
-	if err != nil {
-		return nil, domain.ErrInvalidToken
-	}
-
-	// Get user
-	user, err := uc.userRepo.FindByID(ctx, claims.UserID)
+	// Get user (refresh token already contains user ID)
+	user, err := uc.userRepo.FindByID(ctx, refreshToken.UserID)
 	if err != nil {
 		return nil, err
 	}
